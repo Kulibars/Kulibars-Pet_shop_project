@@ -53,12 +53,13 @@ const AddProductContainer = ({ className }) => {
       dispatch(CLEAR_CURRENT_PRODUCT);
       request(`/products/${paramsId}`)
         .then(({ data, error }) => {
-          dispatch(setProductAction(data));
-          dispatch(setErrorAction(error));
+          !error && dispatch(setProductAction(data));
+          error && dispatch(openMessageWindowAction(error));
+          error && navigate("/admin");
         })
         .then(() => dispatch(LOADING_END));
     }
-  }, [dispatch, isEditing, paramsId]);
+  }, [dispatch, isEditing, paramsId, navigate]);
 
   useEffect(() => {
     if (product) {
@@ -89,7 +90,7 @@ const AddProductContainer = ({ className }) => {
       setPrice("");
       setImageUrl("");
     }
-  }, [product, categories, isCreating, isEditing]);
+  }, [product, categories, isCreating, isEditing, paramsId]);
 
   const forAnimalSelect = ({ target }) => {
     setSelectedAnimal(target.value);

@@ -9,7 +9,7 @@ import {
 } from "../../../../actions";
 import { useDispatch, useSelector } from "react-redux";
 import { selectLoading } from "../../../../selectors/select-loading";
-import { Button, Loader } from "../../../../components";
+import { Button, Error, Loader } from "../../../../components";
 
 const OrdersProductContainer = ({ className, basket }) => {
   const { id } = useParams();
@@ -17,12 +17,14 @@ const OrdersProductContainer = ({ className, basket }) => {
   const navigate = useNavigate();
   const loading = useSelector(selectLoading);
   const [reserved, setReserved] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
     dispatch(LOADING_START);
     request(`/reserved/${id}`)
-      .then(({ data }) => {
-        setReserved(data);
+      .then(({ data, error }) => {
+        !error && setReserved(data);
+        error && setErrorMessage(error);
       })
       .then(() => {
         dispatch(LOADING_END);
@@ -38,6 +40,11 @@ const OrdersProductContainer = ({ className, basket }) => {
   if (loading) {
     return <Loader />;
   }
+
+  if (errorMessage !== null) {
+    return <Error error={errorMessage} />;
+  }
+
   return (
     <div className={className}>
       <div className="productList">

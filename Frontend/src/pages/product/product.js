@@ -38,7 +38,7 @@ const ProductContainer = ({ className }) => {
     dispatch(CLEAR_CURRENT_PRODUCT);
     request(`/products/${id}`)
       .then(({ data, error }) => {
-        dispatch(setProductAction(data));
+        !error && dispatch(setProductAction(data));
         setErrorMessage(error);
       })
       .then(() => dispatch(LOADING_END));

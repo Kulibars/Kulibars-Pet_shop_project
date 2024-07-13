@@ -44,9 +44,9 @@ router.get(
     try {
       const reserve = await getReserve(req.params.id);
 
-      res.send({ data: mapReserved(reserve) });
+      res.send({ error: null, data: mapReserved(reserve) });
     } catch (e) {
-      res.send({ error: e.message });
+      res.send({ error: "ничего не найдено" });
     }
   }
 );

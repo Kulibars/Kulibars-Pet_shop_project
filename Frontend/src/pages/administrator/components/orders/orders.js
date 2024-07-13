@@ -33,7 +33,7 @@ const OrdersContainer = ({ className }) => {
     );
   }
 
-  if (!reserved.length) {
+  if (!loading && !reserved.length) {
     return (
       <div className={className}>
         <AdministratorPanel />

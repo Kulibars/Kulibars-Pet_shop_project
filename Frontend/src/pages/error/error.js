@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-const Div = styled.div``;
-
 export const ErrorContainer = ({ className, error }) =>
   error && (
     <div className={className}>

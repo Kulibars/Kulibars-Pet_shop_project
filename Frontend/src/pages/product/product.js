@@ -93,7 +93,11 @@ const ProductContainer = ({ className }) => {
                   В корзину
                 </Button>
               ) : (
-                <BtnAndInputCounter id={id} ProductInBasket={productInBasket} />
+                <BtnAndInputCounter
+                  ContainerWidth="100%"
+                  id={id}
+                  ProductInBasket={productInBasket}
+                />
               )}
             </div>
           </div>

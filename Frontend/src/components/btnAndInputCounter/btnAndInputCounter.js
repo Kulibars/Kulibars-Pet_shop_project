@@ -83,6 +83,8 @@ export const BtnAndInputCounter = styled(BtnAndInputCounterContainer)`
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
   }
+  width: ${({ ContainerWidth = "" }) => ContainerWidth};
+
   margin: 0px auto;
   display: flex;
   flex-direction: row;

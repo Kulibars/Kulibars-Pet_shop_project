@@ -23,7 +23,7 @@ const AdministratorPanelContainer = ({ className }) => {
         </div>
         <div className="btnAdmin">
           <Link to="/admin/categories">
-            <Button onClick={() => {}}>Добавить категорию</Button>
+            <Button onClick={() => {}}>Список категорий</Button>
           </Link>
         </div>
       </div>

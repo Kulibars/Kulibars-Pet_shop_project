@@ -28,13 +28,12 @@ import {
 import { ROLE } from "./constants";
 import { checkAccess, request } from "./utils";
 import { Modal } from "./components";
-// ==============
 
 const AppColumn = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 1514px;
+  width: 100%;
   min-height: 100%;
   margin: 0 auto;
   background-color: #fff;

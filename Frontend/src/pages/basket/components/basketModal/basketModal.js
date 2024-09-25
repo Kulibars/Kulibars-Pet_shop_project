@@ -57,13 +57,13 @@ const BasketModalContainer = ({
           <Input
             onChange={changeName}
             borderradius="10px"
-            placeholder="Введите имя"
+            placeholder="Введите ваше имя"
           />
         )}
         <Input
           onChange={changePhoneNumber}
           borderradius="10px"
-          placeholder="Ввидите номер"
+          placeholder="Введите номер телефона"
         />
         <div
           className="

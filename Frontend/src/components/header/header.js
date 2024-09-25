@@ -16,7 +16,7 @@ export const Header = styled(HeaderContainer)`
   justify-content: space-between;
   box-sizing: border-box;
   background: #fff5cd;
-  width: 1520px;
+  width: 100%;
   height: 100px;
   align-items: center;
   z-index: 6;

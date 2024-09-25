@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 export const FooterContainer = ({ className }) => {
   return (
     <div className={className}>
-      <h2>Дипломный проект Михаила Степанцева</h2>
       <div className="social">
         <Link to="https://vk.com/id24192203">
           <Icon onClick={() => {}} size="50px" id="fa-vk" />

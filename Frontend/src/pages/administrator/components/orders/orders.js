@@ -4,25 +4,30 @@ import { request } from "../../../../utils";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectLoading } from "../../../../selectors/select-loading";
-import { LOADING_END, LOADING_START } from "../../../../actions";
+import {
+  LOADING_END,
+  LOADING_START,
+  openMessageWindowAction,
+} from "../../../../actions";
 import { Error, Loader } from "../../../../components";
 import { AdministratorPanel } from "../administratorPanel/administratorPanel";
 
 const OrdersContainer = ({ className }) => {
-  const [reserved, setReserved] = useState([]);
+  const [reserved, setReserved] = useState(null);
   const dispatch = useDispatch();
   const loading = useSelector(selectLoading);
 
   useEffect(() => {
     dispatch(LOADING_START);
     request("/reserved")
-      .then(({ data }) => {
-        setReserved(data);
+      .then(({ data, error }) => {
+        !error && setReserved(data);
+        dispatch(openMessageWindowAction(error));
       })
       .then(() => {
         dispatch(LOADING_END);
       });
-  }, [dispatch]);
+  }, [dispatch, reserved]);
 
   if (loading) {
     return (
@@ -33,7 +38,7 @@ const OrdersContainer = ({ className }) => {
     );
   }
 
-  if (!loading && !reserved.length) {
+  if (!loading && !reserved) {
     return (
       <div className={className}>
         <AdministratorPanel />
@@ -45,7 +50,7 @@ const OrdersContainer = ({ className }) => {
   return (
     <div className={className}>
       <AdministratorPanel />
-      {reserved.map(({ id, buyer, phoneNumber, createdAt, basket }) => (
+      {reserved.map(({ id, buyer, phoneNumber, createdAt }) => (
         <div key={id} className="reserved">
           <Link to={`/admin/orders/${id}`}>
             <div className="info">
